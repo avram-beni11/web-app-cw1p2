@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
     <script src="lessons.js"></script>
     <title>Document</title>
@@ -12,6 +13,7 @@
 <body>
     
     <div id="app">
+        <button class="btn">{{cartItemCount}}<span class="fa fa-shopping-basket"></span>Basket</button>
         <div style="display: flex; flex-wrap: wrap; gap: 10px" id="productCards">
             <div v-for="lesson in lessons" id="lesson">
                 <h1>{{ lesson.name }}</h1>
@@ -19,13 +21,13 @@
                 <p>Price: {{lesson.price}}</p>
                 <p>Location: {{lesson.location}}</p>
                 <p>Spaces: {{lesson.spaces}}</p>
-                <button v-on:click="addItem(lesson)" v-if="canAddToCart(lesson)">Purchase Lesson</button>
-                <button disabled="true"  v-else>Out of Stock</button>
+                <button class="Addbtn" id="addButt" v-on:click="addItem(lesson)"    >Purchase Lesson</button>
+                <button v-else-if="lesson.spaces - cartCount(lesson.id) === 0">Out of Stock!</button>
             </div>
         </div>
     </div>
 
-    <script>
+    <script type="text/javascript">
         let webstore = new Vue({ // The Vue instance
   el: '#app',
   data: {
@@ -44,11 +46,27 @@ methods: {
         this.cart.push(lesson.id);
       },
       canAddToCart: function(lesson) {
-        return lesson.spaces > 0;
+        return lesson.Space > this.cartCount(lesson.id);
     },
-    
-     
-}
+    cartCount(id) {
+                    let count = 0;
+                    for (let i = 0; i < this.cart.length; i++) {
+                        if (this.cart[i] === id) {
+                            count++;
+                        }
+                    }
+                    return count;
+        }
+},
+computed: {
+                cartItemCount() {
+                    return this.cart.length || '';
+                },
+                checkspace: function() {
+                    return this.product.spaces - this.cartCount;
+                },
+                
+            }
     
 
 })
