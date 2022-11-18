@@ -68,66 +68,84 @@
                     <button v-on:click="deleteItem(lesson)">Delete Order</button>
                 </div>
             </div>
+                <p>
+                    Name:<br>
+                    <input type="text" v-model.trim="name" placeholder="Name..." required>
+                </p>
+                <p>
+                    Phone Number:<br>
+                    <input type="number" v-model.number="phone" placeholder="Phone No." required>
+                </p>
+                <p>
+                    E-Mail:<br>
+                    <input type="email" v-model.number="email" placeholder="E-Mail" required>
+                </p>
+
+                <button v-on:click="submitCheck">Check Out</button>
+            </div>
         </div>
-    </div>
 
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-        let webstore = new Vue({ // The Vue instance
-            el: '#app',
-            data: {
-                showCart: true,
-                order: {
-                    Name: '',
-                    Email: '',
+            let webstore = new Vue({ // The Vue instance
+                el: '#app',
+                data: {
+                    showCart: true,
+                    order: {
+                        Name: '',
+                        phone: '',
+                        Email: '',
+                    },
+                    //the line below is the cart array
+                    lessons: lessons,
+                    cart: []
                 },
-                //the line below is the cart array
-                lessons: lessons,
-                cart: []
-            },
-            methods: {
-                addItem: function (lesson) {
-                    this.cart.push(lesson.id);
-                    lesson.spaces -= 1;
+                methods: {
+                    addItem: function (lesson) {
+                        this.cart.push(lesson.id);
+                        lesson.spaces -= 1;
 
-                },
-                canAddToCart: function (lesson) {
-                    return lesson.spaces > this.cartCount(lesson.id);
-                },
-                cartCount(id) {
-                    let count = 0;
-                    for (let i = 0; i < this.cart.length; i++) {
-                        if (this.cart[i] === id) {
-                            count++;
+                    },
+                    canAddToCart: function (lesson) {
+                        return lesson.spaces > this.cartCount(lesson.id);
+                    },
+                    cartCount(id) {
+                        let count = 0;
+                        for (let i = 0; i < this.cart.length; i++) {
+                            if (this.cart[i] === id) {
+                                count++;
+                            }
                         }
-                    }
-                    return count;
+                        return count;
+                    },
+                    sortTable(key, direction) {
+                        this.sort = `${key} > ${direction}`
+                        if (direction === 'asc') {
+                            this.lessons.sort((a, b) => a[key] > b[key] ? 1 : -1)
+                        } else {
+                            this.lessons.sort((a, b) => a[key] < b[key] ? 1 : -1)
+                        }
+                    },
+                    showCheckout() {
+                        this.showCart = this.showCart ? false : true;
+                    },
+                    submitCheck() {
+                        alert('Thank You For Shopping')
+                    },
+
+
                 },
-                sortTable(key, direction) {
-                    this.sort = `${key} > ${direction}`
-                    if (direction === 'asc') {
-                        this.lessons.sort((a, b) => a[key] > b[key] ? 1 : -1)
-                    } else {
-                        this.lessons.sort((a, b) => a[key] < b[key] ? 1 : -1)
-                    }
-                },
-                showCheckout() {
-                    this.showCart = this.showCart ? false : true;
-                },
+                computed: {
+                    cartItemCount() {
+                        return this.cart.length || '';
+                    },
 
 
-            },
-            computed: {
-                cartItemCount() {
-                    return this.cart.length || '';
-                },
+                }
 
-
-            }
-
-        });
-    </script>
+            });
+        </script>
 </body>
 
 </html>

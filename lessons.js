@@ -20,74 +20,74 @@ var lessons = [
     {
         id: 03,
         name: "Math",
-        description: "English lessons tought by <em>professional</em> English speakers!",
+        description: "Math lessons tought by university graduates",
         price: 75,
-        location: "Leeds",
+        location: "London",
         spaces: 3,
-        image: "assets/english.png"
+        image: "assets/math.png"
     },
     {
         id: 04,
         name: "Science",
-        description: "English lessons tought by <em>professional</em> English speakers!",
+        description: "Science lessons thought buy the very best science teachers",
         price: 35,
-        location: "Leeds",
+        location: "Brighton",
         spaces: 34,
-        image: "assets/english.png"
+        image: "assets/science.png"
     },
     {
         id: 05,
         name: "Music",
-        description: "English lessons tought by <em>professional</em> English speakers!",
+        description: "Music lessons bought to you by professional band members",
         price: 30,
-        location: "Leeds",
+        location: "Manchester",
         spaces: 20,
-        image: "assets/english.png"
+        image: "assets/music.png"
     },
     {
         id: 06,
         name: "Information Technology",
-        description: "English lessons tought by <em>professional</em> English speakers!",
+        description: "IT lessons by university graduates",
         price: 43,
-        location: "Leeds",
+        location: "Derby",
         spaces: 12,
-        image: "assets/english.png"
+        image: "assets/it.png"
     },
     {
         id: 07,
         name: "Programming",
-        description: "English lessons tought by <em>professional</em> English speakers!",
+        description: "Programming lessons tought by professionals!",
         price: 50,
-        location: "Leeds",
+        location: "Portsmouth",
         spaces: 69,
-        image: "assets/english.png"
+        image: "assets/programming.png"
     },
     {
         id: 08,
         name: "Art",
-        description: "English lessons tought by <em>professional</em> English speakers!",
+        description: "Art lessons tought by master artists!",
         price: 35,
-        location: "Leeds",
+        location: "London",
         spaces: 100,
-        image: "assets/english.png"
+        image: "assets/art.png"
     },
     {
         id: 09,
         name: "Geography",
-        description: "English lessons tought by <em>professional</em> English speakers!",
+        description: "Geography lessons tought by <em>professional</em> geographers!",
         price: 45,
         location: "Leeds",
         spaces: 75,
-        image: "assets/english.png"
+        image: "assets/geography.png"
     },
     {
         id: 10,
         name: "History",
-        description: "English lessons tought by <em>professional</em> English speakers!",
+        description: "History lessons tought by <em>professional</em> historians!",
         price: 30,
-        location: "Leeds",
+        location: "Margate",
         spaces: 23,
-        image: "assets/english.png"
+        image: "assets/history.png"
     },
 
 ]
