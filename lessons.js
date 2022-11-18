@@ -23,7 +23,7 @@ var lessons = [
         description: "English lessons tought by <em>professional</em> English speakers!",
         price: 75,
         location: "Leeds",
-        spaces: 13,
+        spaces: 3,
         image: "assets/english.png"
     },
     {
@@ -32,7 +32,7 @@ var lessons = [
         description: "English lessons tought by <em>professional</em> English speakers!",
         price: 35,
         location: "Leeds",
-        spaces: 13,
+        spaces: 34,
         image: "assets/english.png"
     },
     {
@@ -41,7 +41,7 @@ var lessons = [
         description: "English lessons tought by <em>professional</em> English speakers!",
         price: 30,
         location: "Leeds",
-        spaces: 13,
+        spaces: 20,
         image: "assets/english.png"
     },
     {
@@ -50,7 +50,7 @@ var lessons = [
         description: "English lessons tought by <em>professional</em> English speakers!",
         price: 43,
         location: "Leeds",
-        spaces: 13,
+        spaces: 12,
         image: "assets/english.png"
     },
     {
@@ -59,7 +59,7 @@ var lessons = [
         description: "English lessons tought by <em>professional</em> English speakers!",
         price: 50,
         location: "Leeds",
-        spaces: 13,
+        spaces: 69,
         image: "assets/english.png"
     },
     {
@@ -68,7 +68,7 @@ var lessons = [
         description: "English lessons tought by <em>professional</em> English speakers!",
         price: 35,
         location: "Leeds",
-        spaces: 13,
+        spaces: 100,
         image: "assets/english.png"
     },
     {
@@ -77,7 +77,7 @@ var lessons = [
         description: "English lessons tought by <em>professional</em> English speakers!",
         price: 45,
         location: "Leeds",
-        spaces: 13,
+        spaces: 75,
         image: "assets/english.png"
     },
     {
@@ -86,7 +86,7 @@ var lessons = [
         description: "English lessons tought by <em>professional</em> English speakers!",
         price: 30,
         location: "Leeds",
-        spaces: 13,
+        spaces: 23,
         image: "assets/english.png"
     },
 
