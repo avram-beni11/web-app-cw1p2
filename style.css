@@ -17,22 +17,34 @@
     width: 405px;
     font-size: 18px;
 }
+
 #addButt:hover {
     background-color: rgb(39, 39, 39);
 }
 
-#app{
+#app {
     font-family: Arial, Helvetica, sans-serif;
-    display: flex; 
-    flex-wrap: wrap; gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 #productCards {
-    display: flex; 
-    flex-wrap: wrap; gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 #productCardsCart {
-    display: flex; 
-    flex-wrap: wrap; gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#lesson2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: smaller;
+    text-align: center;
+    border: 5px solid black;
+    max-width: 400px;
 }

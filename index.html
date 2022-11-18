@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,84 +11,86 @@
     <script src="lessons.js"></script>
     <title>CW1 Part 2</title>
 </head>
+
 <body>
-    
-<div id="app">
-        <button class="btn" v-on:click='showCheckout'>{{cartItemCount}}<span class="fa fa-shopping-basket"></span>Basket</button>
-    <div v-if="showProduct">
-        <div class="sorting">
-            <h1>Sort by</h1>
-            <p>
-                <input type="radio" name="Attributes" @click="sortTable('name')">
-                <label for="Subject">Subject</label>
-                <input type="radio" name="Attributes" @click="sortTable('location')">
-                <label for="Location">Location</label>
-                <input type="radio" name="Attributes" @click="sortTable('price')">
-                <label for="Price">Price</label>
-                <input type="radio" name="Attributes" @click="sortTable('spaces')">
-                <label for="Space">Space</label>
-            </p>
-            <p>
-                <input type="radio" name="fav" @click="sortTable('asc')">
-                <label for="Subject">Ascending</label>
-                <input type="radio" name="fav" @click="sortTable('desc')">
-                <label for="Location">Descscending</label>
-            </p>
-        </div>
-        <div id="productCards">
-            <div v-for="lesson in lessons" id="lesson">
-                <h1>{{ lesson.name }}</h1>
-                <h2 v-html="lesson.description"></h2>
-                <p>Price: £{{lesson.price}}</p>
-                <p>Location: {{lesson.location}}</p>
+
+    <div id="app">
+        <button class="btn" v-on:click='showCheckout'>{{cartItemCount}}<span
+                class="fa fa-shopping-basket"></span>Basket</button>
+        <div v-if="showCart">
+            <div class="sorting">
+                <h1>Sort by</h1>
                 <p>
-                    <b>Spaces:</b>
+                    <input type="radio" name="Attributes" @click="sortTable('name')">
+                    <label for="Subject">Subject</label>
+                    <input type="radio" name="Attributes" @click="sortTable('location')">
+                    <label for="Location">Location</label>
+                    <input type="radio" name="Attributes" @click="sortTable('price')">
+                    <label for="Price">Price</label>
+                    <input type="radio" name="Attributes" @click="sortTable('spaces')">
+                    <label for="Space">Space</label>
+                </p>
+                <p>
+                    <input type="radio" name="fav" @click="sortTable('asc')">
+                    <label for="Subject">Ascending</label>
+                    <input type="radio" name="fav" @click="sortTable('desc')">
+                    <label for="Location">Descscending</label>
+                </p>
+            </div>
+            <div id="productCards">
+                <div v-for="lesson in lessons" id="lesson">
+                    <h1>{{ lesson.name }}</h1>
+                    <h2 v-html="lesson.description"></h2>
+                    <p>Price: £{{lesson.price}}</p>
+                    <p>Location: {{lesson.location}}</p>
+                    <p>
+                        <b>Spaces:</b>
                         <span v-if="lesson.spaces">Only {{lesson.spaces}} left!</span>
                         <span v-if="lesson.spaces === 0">OUT OF STOCK!</span>
-                </p>
-                <button class="Addbtn" id="addButt" v-on:click="addItem(lesson)" :disabled="lesson.spaces === 0">
-                    <span v-if="lesson.spaces > 0" >Purchase Lesson</span>
-                    <span v-if="lesson.spaces === 0">OUT OF STOCK!</span>
-                </button>
+                    </p>
+                    <button class="Addbtn" id="addButt" v-on:click="addItem(lesson)" :disabled="lesson.spaces === 0">
+                        <span v-if="lesson.spaces > 0">Purchase Lesson</span>
+                        <span v-if="lesson.spaces === 0">OUT OF STOCK!</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div v-else>
+            <div id="productCardsCart">
+                <div v-for="lesson in cart" id="lesson2">
+                    <h1>{{ lesson.name }}</h1>
+                    <h2 v-html="lesson.description"></h2>
+                    <p>Price: £{{lesson.price}}</p>
+                    <p>Location: {{lesson.location}}</p>
+                </div>
             </div>
         </div>
     </div>
-    <div v-else>
-        <div id="productCardsCart">
-            <div v-for="lesson in cart" id="lesson">
-                <h1>{{ lesson.name }}</h1>
-                <h2 v-html="lesson.description"></h2>
-                <p>Price: £{{lesson.price}}</p>
-                <p>Location: {{lesson.location}}</p>
-                <button @click="del(cart)"><span class="fas fa-cart-arrow-down"></span>Delete</button>
-            </div>
-        </div>
-</div>
+    
 
     <script type="text/javascript">
         let webstore = new Vue({ // The Vue instance
-  el: '#app',
-  data: {
-    sitename: "Web App",
-    showProduct: true,
-    order: {
-        Name: '',
-        Phonenumber: '',
-      },
-      //the line below is the cart array
-      lessons: lessons,
-      cart: []
-  },
-methods: {
-      addItem: function(lesson) {
-        this.cart.push(lesson.id);
-        lesson.spaces -= 1;
-       
-      },
-      canAddToCart: function(lesson) {
-        return lesson.spaces > this.cartCount(lesson.id);
-    },
-    cartCount(id) {
+            el: '#app',
+            data: {
+                showCart: true,
+                order: {
+                    Name: '',
+                    Email: '',
+                },
+                //the line below is the cart array
+                lessons: lessons,
+                cart: []
+            },
+            methods: {
+                addItem: function (lesson) {
+                    this.cart.push(lesson.id);
+                    lesson.spaces -= 1;
+
+                },
+                canAddToCart: function (lesson) {
+                    return lesson.spaces > this.cartCount(lesson.id);
+                },
+                cartCount(id) {
                     let count = 0;
                     for (let i = 0; i < this.cart.length; i++) {
                         if (this.cart[i] === id) {
@@ -95,8 +98,8 @@ methods: {
                         }
                     }
                     return count;
-        },
-        sortTable(key, direction) {
+                },
+                sortTable(key, direction) {
                     this.sort = `${key} > ${direction}`
                     if (direction === 'asc') {
                         this.lessons.sort((a, b) => a[key] > b[key] ? 1 : -1)
@@ -105,19 +108,20 @@ methods: {
                     }
                 },
                 showCheckout() {
-                    this.showProduct = this.showProduct ? false : true;
+                    this.showCart = this.showCart ? false : true;
                 },
-},
-computed: {
+            },
+            computed: {
                 cartItemCount() {
                     return this.cart.length || '';
                 },
 
-                
-            }
-    
 
-})
+            }
+
+
+        })
     </script>
 </body>
+
 </html>
