@@ -4,9 +4,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
+    <script src="lessons.js"></script>
     <title>Document</title>
 </head>
 <body>
     
+    <div id="app">
+        <div style="display: flex; flex-wrap: wrap; gap: 10px" id="productCards">
+            <div v-for="lesson in lessons" id="lesson">
+                <h1>{{ lesson.name }}</h1>
+                <h2 v-html="lesson.description"></h2>
+                <p>Price: {{lesson.price}}</p>
+                <p>Location: {{lesson.location}}</p>
+                <p>Spaces: {{lesson.spaces}}</p>
+                <button v-on:click="addItem(lesson)" v-if="canAddToCart(lesson)">Purchase Lesson</button>
+                <button disabled="true"  v-else>Out of Stock</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let webstore = new Vue({ // The Vue instance
+  el: '#app',
+  data: {
+    sitename: "Web App",
+    showProduct: true,
+    order: {
+        Name: '',
+        Phonenumber: '',
+      },
+      //the line below is the cart array
+      lessons: lessons,
+      cart: []
+  },
+methods: {
+      addItem: function(lesson) {
+        this.cart.push(lesson.id);
+      },
+      canAddToCart: function(lesson) {
+        return lesson.spaces > 0;
+    },
+    
+     
+}
+    
+
+})
+    </script>
 </body>
 </html>
