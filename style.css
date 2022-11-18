@@ -23,4 +23,16 @@
 
 #app{
     font-family: Arial, Helvetica, sans-serif;
+    display: flex; 
+    flex-wrap: wrap; gap: 10px;
+}
+
+#productCards {
+    display: flex; 
+    flex-wrap: wrap; gap: 10px;
+}
+
+#productCardsCart {
+    display: flex; 
+    flex-wrap: wrap; gap: 10px;
 }
