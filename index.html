@@ -14,11 +14,30 @@
     
     <div id="app">
         <button class="btn">{{cartItemCount}}<span class="fa fa-shopping-basket"></span>Basket</button>
+        <div class="sorting">
+            <h1>Sort by</h1>
+            <p>
+                <input type="radio" name="Attributes" @click="sortTable('name')">
+                <label for="Subject">Subject</label>
+                <input type="radio" name="Attributes" @click="sortTable('location')">
+                <label for="Location">Location</label>
+                <input type="radio" name="Attributes" @click="sortTable('price')">
+                <label for="Price">Price</label>
+                <input type="radio" name="Attributes" @click="sortTable('spaces')">
+                <label for="Space">Space</label>
+            </p>
+            <p>
+                <input type="radio" name="fav" @click="sortTable('asc')">
+                <label for="Subject">Ascending</label>
+                <input type="radio" name="fav" @click="sortTable('desc')">
+                <label for="Location">Descscending</label>
+            </p>
+        </div>
         <div style="display: flex; flex-wrap: wrap; gap: 10px" id="productCards">
             <div v-for="lesson in lessons" id="lesson">
                 <h1>{{ lesson.name }}</h1>
                 <h2 v-html="lesson.description"></h2>
-                <p>Price: {{lesson.price}}</p>
+                <p>Price: £{{lesson.price}}</p>
                 <p>Location: {{lesson.location}}</p>
                 <p>
                     <b>Spaces:</b>
@@ -64,7 +83,15 @@ methods: {
                         }
                     }
                     return count;
-        }
+        },
+        sortTable(key, direction) {
+                    this.sort = `${key} > ${direction}`
+                    if (direction === 'asc') {
+                        this.lessons.sort((a, b) => a[key] > b[key] ? 1 : -1)
+                    } else {
+                        this.lessons.sort((a, b) => a[key] < b[key] ? 1 : -1)
+                    }
+                }
 },
 computed: {
                 cartItemCount() {
