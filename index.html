@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
     <script src="lessons.js"></script>
-    <title>Document</title>
+    <title>CW1 Part 2</title>
 </head>
 <body>
     
@@ -20,9 +20,15 @@
                 <h2 v-html="lesson.description"></h2>
                 <p>Price: {{lesson.price}}</p>
                 <p>Location: {{lesson.location}}</p>
-                <p>Spaces: {{lesson.spaces}}</p>
-                <button class="Addbtn" id="addButt" v-on:click="addItem(lesson)"    >Purchase Lesson</button>
-                <button v-else-if="lesson.spaces - cartCount(lesson.id) === 0">Out of Stock!</button>
+                <p>
+                    <b>Spaces:</b>
+                        <span v-if="lesson.spaces">Only {{lesson.spaces}} left!</span>
+                        <span v-if="lesson.spaces === 0">OUT OF STOCK!</span>
+                </p>
+                <button class="Addbtn" id="addButt" v-on:click="addItem(lesson)" :disabled="lesson.spaces === 0">
+                    <span v-if="lesson.spaces > 0" >Purchase Lesson</span>
+                    <span v-if="lesson.spaces === 0">OUT OF STOCK!</span>
+                </button>
             </div>
         </div>
     </div>
@@ -44,9 +50,11 @@
 methods: {
       addItem: function(lesson) {
         this.cart.push(lesson.id);
+        lesson.spaces -= 1;
+       
       },
       canAddToCart: function(lesson) {
-        return lesson.Space > this.cartCount(lesson.id);
+        return lesson.spaces > this.cartCount(lesson.id);
     },
     cartCount(id) {
                     let count = 0;
