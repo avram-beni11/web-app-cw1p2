@@ -49,3 +49,8 @@
     max-width: 400px;
     min-width: 400px;
 }
+
+#sorting {
+    position: relative;
+    left:500px; 
+}
